@@ -19,3 +19,6 @@ GET-응답 4xx, GET-응답 2xxx, HEAD-응답 1xx, POST-응답 2xxx, POST-응답 
 </div>
 
 - - - 
+
+### 1. GET Success 200
+<img width="955" alt="index" src="https://github.com/KooSuYeon/computer_network/assets/124496650/62c3118c-be5a-41f0-a29d-9314facd84b0">
