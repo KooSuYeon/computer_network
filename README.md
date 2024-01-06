@@ -20,5 +20,38 @@ GET-응답 4xx, GET-응답 2xxx, HEAD-응답 1xx, POST-응답 2xxx, POST-응답 
 
 - - - 
 
+### TCP programming 
+server.py , client.py 분리하여 작성
+
+
+#### << server.py >>
+
+
+##### 1. TCP Socket 생성 및 연결 대기 (Python의 socket 모듈 사용)
+- TCP 방법이기 떄문에 socket(AF_INET, SOCK_STREAM)
+- IP, PORT를 Socket에 바인딩 (Socket이 IP, PORT에서 대기하면서 들어오는 연결을 수락할 수 있게 해줌)
+- 동시에 들을 수 있는 client 수 지정 (순서를 보여주기 위해 client들이 담길 배열 생성)
+
+
+
+
+##### 2. client 연결 (socket의 accept()함수 이용)
+- client와 통신하기 위한 Socket, client의 주소(IP, PORT) 받아옴 (client와의 연결이 될 때까지)
+
+
+
+
+##### 3. request method 처리 (request_handler)
+- 새로 생성한 Socket으로 들어오는 HTTP header 정보 처리
+- HTTP header의 첫 줄에는 HTTP request method, 주소, HTTP version으로 구성되어 있음 (ex. GET /index.html HTTP/1.1)
+- 각 method마다 handler를 호출
+
+
+##### 4-1. get_handler (GET /index.html HTTP/1.1 처리)
+- 
+- HTTP header의 첫 줄에는 HTTP request method, 주소, HTTP version으로 구성되어 있음 (ex. GET /index.html HTTP/1.1)
+- 각 method마다 handler를 호출
+
+
 ### 1. GET Success 200
 <img width="955" alt="index" src="https://github.com/KooSuYeon/computer_network/assets/124496650/62c3118c-be5a-41f0-a29d-9314facd84b0">
