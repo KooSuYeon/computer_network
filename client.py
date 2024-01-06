@@ -3,7 +3,7 @@ from socket import *
 # Socket생성의 두 가지 요소 : IP, PORT
 # 1. 내 머신의 IP
 # 2. 사용하려는 PORT
-serverName = '127.0.0.1'
+serverName = '115.21.108.6'
 serverPort = 8891
 
 def send_request(host, port, request):

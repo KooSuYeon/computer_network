@@ -93,7 +93,7 @@ def put_handler(version, url, client_socket, message):
 def request_handler(client_socket):
     # client -> server
     # client로부터 받아오는 HTTP header 정보
-    request = connectionSocket.recv(1024).decode()
+    request = client_socket.recv(1024).decode()
     print(f"From Client{len(client_sockets)} Sentence : {request}")
 
     lines = request.split('\n')
