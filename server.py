@@ -21,6 +21,7 @@ print(f"IP : 127.0.0.1 PORT : {serverPort}")
 print(">>> Ready to Listenting maximum 5 Clients <<<")
 print(f'...Listening on port {serverPort}...')
 
+# GET handler : /index.html 접근시 처리 (REQUEST)
 def get_handler(version, url, client_socket):
     URL = "/index.html" if len(url) == 1 and url[0] == "/" else url
     FIANL_PATH = CURR_MY_PATH_ROOT + URL
@@ -38,6 +39,7 @@ def get_handler(version, url, client_socket):
         else:
             client_socket.send("HTTP/1.1 404 Not Found\n".encode())
 
+# POST handler : query.html에 입력 후 submit 처리 (INPUT)
 def post_handler(version, url, client_socket, message):
     post_information = message.split('\n')[-1]
     html_data = "<!DOCTYPE html><html><body><h2>{}</h2></body></html>".format(post_information)
@@ -52,7 +54,7 @@ def post_handler(version, url, client_socket, message):
         response = "HTTP/1.1 200 OK\n\n{}".format(html_data)
         client_socket.send(response.encode())
 
-
+# HEAD handler : style.css 파일 있는지 여부 확인 (RETURN)
 def head_handler(version, url, client_socket):
     URL = "/style.css" if len(url) == 1 and url[0] == "/" else url
     FIANL_PATH = CURR_MY_PATH_ROOT + URL
@@ -70,7 +72,7 @@ def head_handler(version, url, client_socket):
             client_socket.send("HTTP/1.1 404 Not Found\n".encode())
 
         
-
+# PUT handler : result.txt 수정 처리 (UPDATE)
 def put_handler(version, url, client_socket, message):
     resource_path = os.path.join(CURR_MY_PATH_ROOT, "result.txt")
 
@@ -89,7 +91,8 @@ def put_handler(version, url, client_socket, message):
 
 
 def request_handler(client_socket):
-    # client로부터 받아오는 http_method
+    # client -> server
+    # client로부터 받아오는 HTTP header 정보
     request = connectionSocket.recv(1024).decode()
     print(f"From Client{len(client_sockets)} Sentence : {request}")
 
@@ -101,7 +104,7 @@ def request_handler(client_socket):
     version = first_line[2]
 
     # server -> client 응답 구성
-    # HTTP 메소드에 따른 응답 생성
+    # 각 요청마다 handler 연결
     # GET
     if method == "GET":
         get_handler(version, url, client_socket)
@@ -118,7 +121,6 @@ def request_handler(client_socket):
     elif method == "PUT":
         put_handler(version, url, client_socket, request)
 
-    
     # else:
     connectionSocket.close()
     
@@ -131,6 +133,3 @@ while True:
     print(f">>> Client{len(client_sockets)} Connection Succeess! <<<")
 
     request_handler(connectionSocket)
-    
-    # # server -> client 응답 구성
-    # # HTTP 메소드에 따른 응답 생성

@@ -1,18 +1,23 @@
 from socket import *
-import threading
 
+# Socket생성의 두 가지 요소 : IP, PORT
+# 1. 내 머신의 IP
+# 2. 사용하려는 PORT
 serverName = '127.0.0.1'
 serverPort = 8891
 
 def send_request(host, port, request):
-    # TCP socket 생성
+    # TCP socket 생성 후 connection 생성
     clientSocket = socket(AF_INET, SOCK_STREAM)
-    # TCP -> socket마다 connection 생성
     clientSocket.connect((host, port))
+    # client -> server
+    # HTTP 요청의 header를 보냄.
     clientSocket.send(request.encode())
 
     response = b""
     while True:
+        # server -> client
+        # 요청에 따른 server의 응답
         data = clientSocket.recv(1024)
         if not data:
             break
@@ -21,19 +26,23 @@ def send_request(host, port, request):
     print(response.decode())
     clientSocket.close()
 
+# HTTP GET 요청 header
 def send_http_get_request(host, port, path):
     request = f"GET {path} HTTP/1.1\r\nHost: {host}\r\n\r\n"
     send_request(host, port, request)
 
+# HTTP POST 요청 header
 def send_http_post_request(host, port, path, data):
     content_length = len(data)
     request = f"POST {path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: {content_length}\r\n\r\n{data}"
     send_request(host, port, request)
 
+# HTTP HEAD 요청 header
 def send_http_head_request(host, port, path):
     request = f"HEAD {path} HTTP/1.1\r\nHost: {host}\r\n\r\n"
     send_request(host, port, request)
 
+# HTTP PUT 요청 header
 def send_http_put_request(host, port, path, data):
     content_length = len(data)
     request = f"PUT {path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: {content_length}\r\n\r\n{data}"
