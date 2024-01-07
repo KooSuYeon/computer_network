@@ -15,3 +15,8 @@ name=suyeon&age=21
 name=suyeon&age=21
 name=suyeon&age=21
 name=suyeon&age=21
+POST/result
+7
+
+JOHN25
+josh20

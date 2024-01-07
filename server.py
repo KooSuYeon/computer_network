@@ -39,8 +39,10 @@ def get_handler(version, url, client_socket):
 
 # POST handler : query.html에 입력 후 submit 처리 (INPUT)
 def post_handler(version, url, client_socket, message):
-    name = message.split(' ')[0]
-    age = message.split(' ')[1]
+    last_line = message.split('\n')[-1]
+    age_name = last_line.split(' ')
+    name = age_name[0]
+    age = age_name[1]
     html_data = "<!DOCTYPE html><html><body><h2>NAME : {}</br>AGE : {}</h2></body></html>".format(name, age)
 
     if version not in ["HTTP/1.0", "HTTP/1.1"]:
@@ -55,19 +57,19 @@ def post_handler(version, url, client_socket, message):
 
 # HEAD handler : style.css 파일 있는지 여부 확인 (RETURN)
 def head_handler(version, url, client_socket):
-    URL = "/style.css" if len(url) == 1 and url[0] == "/" else url
-    FIANL_PATH = CURR_MY_PATH_ROOT + URL
-
     if version not in ["HTTP/1.0", "HTTP/1.1"]:
         client_socket.send("HTTP/1.1 400 Bad Request\n".encode())
     else:
-        if os.path.isfile(FIANL_PATH):
-            
-            # 헤더 정보만을 응답으로 전송
-            response = "HTTP/1.0 200 OK\n\n"
-            client_socket.send(response.encode())
-        
-        else:
+
+        file_path = "." + url
+        try:
+            with open(file_path, 'rb') as file:
+                content = file.read()
+                # server -> client
+                # 헤더 정보만을 응답으로 전송
+                response = f"HTTP/1.0 200 OK\n\n"
+                client_socket.send(response.encode())
+        except FileNotFoundError:
             client_socket.send("HTTP/1.1 404 Not Found\n".encode())
 
         
@@ -93,7 +95,7 @@ def request_handler(client_socket):
     # client -> server
     # client로부터 받아오는 HTTP header 정보
     request = client_socket.recv(1024).decode()
-    print(f"From Client{len(client_sockets)} Sentence : {request}")
+    print(f"From Client{len(client_sockets)} HTTP header : {request}")
 
     http_header = request.split()
 
