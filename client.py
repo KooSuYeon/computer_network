@@ -61,4 +61,5 @@ with open("./result.txt", 'r') as result_file:
     print(f"Now in result.txt: {result_content}")
 name = input("Input changing name >>> ")
 age = input("Input changing age >>> ")
-send_http_put_request(serverName, serverPort, '/result.txt', name + age)
+data = name + " " + age
+send_http_put_request(serverName, serverPort, '/result.txt', data)

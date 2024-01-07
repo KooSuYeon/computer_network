@@ -1,9 +1,4 @@
 from socket import *
-import os
-import mimetypes
-from urllib.parse import parse_qs, unquote
-
-CURR_MY_PATH_ROOT = os.getcwd()
 
 # server의 client listen 준비
 # 1. TCP socket 생성
@@ -37,6 +32,7 @@ def get_handler(version, url, client_socket):
         except FileNotFoundError:
             client_socket.send("HTTP/1.1 404 Not Found\n".encode())
 
+
 # POST handler : query.html에 입력 후 submit 처리 (INPUT)
 def post_handler(version, url, client_socket, message):
     last_line = message.split('\n')[-1]
@@ -54,6 +50,8 @@ def post_handler(version, url, client_socket, message):
 
         response = "HTTP/1.1 200 OK\n\n{}".format(html_data)
         client_socket.send(response.encode())
+
+
 
 # HEAD handler : style.css 파일 있는지 여부 확인 (RETURN)
 def head_handler(version, url, client_socket):
@@ -73,9 +71,11 @@ def head_handler(version, url, client_socket):
             client_socket.send("HTTP/1.1 404 Not Found\n".encode())
 
         
+
 # PUT handler : result.txt 수정 처리 (UPDATE)
 def put_handler(version, url, client_socket, message):
-    age_name = message.split(' ')
+    last_line = message.split('\n')[-1]
+    age_name = last_line.split(' ')
     name = age_name[0]
     age = age_name[1]
 
@@ -91,9 +91,10 @@ def put_handler(version, url, client_socket, message):
 
         with open(file_path, 'r') as read_file:
             result_content = read_file.read()
-            
+
         response = "HTTP/1.1 200 OK\n\nResource updated successfully.\n{}".format(result_content)
         client_socket.send(response.encode())
+
 
 
 def request_handler(client_socket):
