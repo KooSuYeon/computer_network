@@ -111,8 +111,26 @@ server.py , client.py 분리하여 작성
 - client에게 입력받음 -> POST 요청
 1. client에게 입력받은 name, age 분리 및 /result에 보여질 html 구성
 2. 올바른 version인지 확인 (HTTP/1.0 or HTTP/1.1)
-3. 입력받은 name, age를 file 에 적음
+3. 입력받은 name, age를 file 에 작성
 4. client에게 받아온 정보로 구성된 /result의 html 내용을 읽어온 후 client에게 전송
 
 
 
+- - - 
+
+## >>>> HEAD 요청
+
+
+#### >>> client
+##### 4-1. send_http_head_request (server로 보낼 request 구성)
+1. send_http_head_request(host, port, "/style.css")
+2. HTTP header 구성 : HEAD /style.css HTTP/1.1\r\nHOST: {host}\r\n\r\n
+3. server와 연결할 Socket 생성 후 Socket으로 만든 header client에게 전송
+
+
+#### >>> server
+##### 4-1. head_handler (client로부터 온 HTTP header HEAD /style.css HTTP/1.1 처리)
+- 172.30.1.56.9002/style.css 존재유무 확인 -> HEAD 요청
+1. 올바른 version인지 확인 (HTTP/1.0 or HTTP/1.1)
+2. 존재하는 css라면 해당 요청의 헤더 정보만을 읽어옴.</br>
+   존재하는 css라면 "HTTP/1.0 200 OK" -> client 에게 전송
