@@ -4,7 +4,7 @@ from socket import *
 # 1. 내 머신의 IP
 # 2. 사용하려는 PORT
 serverName = '172.30.1.56'
-serverPort = 8892
+serverPort = 9002
 
 def send_request(host, port, request):
     # TCP socket 생성 후 connection 생성
@@ -55,5 +55,10 @@ def send_http_put_request(host, port, path, data):
 # client_input = input(">>> ")
 # send_http_post_request(serverName, serverPort, '/result', client_input)
 
-send_http_head_request(serverName, serverPort, "/style.css")
-# send_http_put_request(serverName, serverPort, '/result.txt', 'Update content')
+# send_http_head_request(serverName, serverPort, "/style.css")
+with open("./result.txt", 'r') as result_file:
+    result_content = result_file.read()
+    print(f"Now in result.txt: {result_content}")
+name = input("Input changing name >>> ")
+age = input("Input changing age >>> ")
+send_http_put_request(serverName, serverPort, '/result.txt', name + age)

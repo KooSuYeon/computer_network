@@ -49,7 +49,7 @@ def post_handler(version, url, client_socket, message):
         client_socket.send("HTTP/1.1 400 Bad Request\n".encode())
     else:
         # 파일에 데이터 추가 모드('a')로 열고 데이터를 씁니다.
-        with open("result.txt", 'a') as file:
+        with open("result.txt", 'w') as file:
             file.write(name + age + '\n')
 
         response = "HTTP/1.1 200 OK\n\n{}".format(html_data)
@@ -75,18 +75,19 @@ def head_handler(version, url, client_socket):
         
 # PUT handler : result.txt 수정 처리 (UPDATE)
 def put_handler(version, url, client_socket, message):
-    resource_path = os.path.join(CURR_MY_PATH_ROOT, "result.txt")
+    age_name = message.split(' ')
+    name = age_name[0]
+    age = age_name[1]
 
     if version not in ["HTTP/1.0", "HTTP/1.1"]:
         client_socket.send("HTTP/1.1 400 Bad Request\n".encode())
     
     else:
 
-        update_data = message.split('\n')[-1]
+        update_data = name + age
+        with open("result.txt", 'a') as file:
+            file.write(update_data + '\n')
 
-        with open(resource_path, 'w') as file:
-            file.write(update_data)
-            
         response = "HTTP/1.1 200 OK\n\nResource updated successfully.\n{}".format(update_data)
         client_socket.send(response.encode())
 
