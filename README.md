@@ -134,3 +134,26 @@ server.py , client.py 분리하여 작성
 1. 올바른 version인지 확인 (HTTP/1.0 or HTTP/1.1)
 2. 존재하는 css라면 해당 요청의 헤더 정보만을 읽어옴.</br>
    존재하는 css라면 "HTTP/1.0 200 OK" -> client 에게 전송
+
+
+
+- - - 
+
+## >>>> PUT 요청
+
+
+#### >>> client
+##### 4-1. send_http_put_request (server로 보낼 request 구성)
+1. send_http_put_request(host, port, "/result.txt", "John 25")
+2. HTTP header 구성 : PUT /result.txt HTTP/1.1\r\nHost: {host}\r\nContent-Length: {content_length}\r\n\r\n{data}"
+3. server와 연결할 Socket 생성 후 Socket으로 만든 header client에게 전송
+
+
+#### >>> server
+##### 4-1. put_handler (client로부터 온 HTTP header PUT /style.css HTTP/1.1 처리)
+- client에게 result.txt 수정 요청 -> PUT 요청
+1. client에게 입력받은 name, age 분리 및 result.txt에 수정 내용 반영
+2. 올바른 version인지 확인 (HTTP/1.0 or HTTP/1.1)
+3. 입력받은 name, age를 file 에 반영
+4. client에게 받아온 Update된 정보 -> client에게 전송
+
