@@ -84,11 +84,15 @@ def put_handler(version, url, client_socket, message):
     
     else:
 
+        file_path = "." + url
         update_data = name + age
-        with open("result.txt", 'a') as file:
+        with open(file_path, 'a') as file:
             file.write(update_data + '\n')
 
-        response = "HTTP/1.1 200 OK\n\nResource updated successfully.\n{}".format(update_data)
+        with open(file_path, 'r') as read_file:
+            result_content = read_file.read()
+            
+        response = "HTTP/1.1 200 OK\n\nResource updated successfully.\n{}".format(result_content)
         client_socket.send(response.encode())
 
 
