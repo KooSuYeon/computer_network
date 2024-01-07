@@ -10,46 +10,45 @@ CURR_MY_PATH_ROOT = os.getcwd()
 # 2. IP, PORT를 socket에 바인딩
 # 3. 해당 socket이 최대로 들을 수 있는 client 수를 지정
 # 동시에 들을 수 있는 client 수 지정 : 5개로 지정
-serverPort = 8891
+serverPort = 9002
 serverSocket = socket(AF_INET, SOCK_STREAM)
-serverSocket.bind(('127.0.0.1', serverPort))
+serverSocket.bind(('172.30.1.56', serverPort))
 serverSocket.listen(5)
 client_sockets = []
 
 
-print(f"IP : 127.0.0.1 PORT : {serverPort}")
+print(f"IP : 172.30.1.56 PORT : {serverPort}")
 print(">>> Ready to Listenting maximum 5 Clients <<<")
 print(f'...Listening on port {serverPort}...')
 
-# GET handler : /index.html 접근시 처리 (REQUEST)
+# GET handler (REQUEST)
 def get_handler(version, url, client_socket):
-    URL = "/index.html" if len(url) == 1 and url[0] == "/" else url
-    FIANL_PATH = CURR_MY_PATH_ROOT + URL
-
     if version not in ["HTTP/1.0", "HTTP/1.1"]:
         client_socket.send("HTTP/1.1 400 Bad Request\n".encode())
     else:
-        if os.path.isfile(FIANL_PATH):
-            content_type, _ = mimetypes.guess_type(FIANL_PATH)
-            with open(FIANL_PATH, 'rb') as file:
+        file_path = "." + url
+        try:
+            with open(file_path, 'rb') as file:
                 content = file.read()
-                response = "HTTP/1.0 200 OK\nContent-Type: {}\n\n".format(content_type)
-                client_socket.send(response.encode() + content)
-        
-        else:
+                # server -> client
+                # response code + /index.html 내용
+                response = f"HTTP/1.0 200 OK\n\n{content.decode()}"
+                client_socket.send(response.encode())
+        except FileNotFoundError:
             client_socket.send("HTTP/1.1 404 Not Found\n".encode())
 
 # POST handler : query.html에 입력 후 submit 처리 (INPUT)
 def post_handler(version, url, client_socket, message):
-    post_information = message.split('\n')[-1]
-    html_data = "<!DOCTYPE html><html><body><h2>{}</h2></body></html>".format(post_information)
+    name = message.split(' ')[0]
+    age = message.split(' ')[1]
+    html_data = "<!DOCTYPE html><html><body><h2>NAME : {}</br>AGE : {}</h2></body></html>".format(name, age)
 
     if version not in ["HTTP/1.0", "HTTP/1.1"]:
         client_socket.send("HTTP/1.1 400 Bad Request\n".encode())
     else:
         # 파일에 데이터 추가 모드('a')로 열고 데이터를 씁니다.
         with open("result.txt", 'a') as file:
-            file.write(post_information + '\n')
+            file.write(name + age + '\n')
 
         response = "HTTP/1.1 200 OK\n\n{}".format(html_data)
         client_socket.send(response.encode())
@@ -96,12 +95,11 @@ def request_handler(client_socket):
     request = client_socket.recv(1024).decode()
     print(f"From Client{len(client_sockets)} Sentence : {request}")
 
-    lines = request.split('\n')
-    first_line = lines[0].split()
+    http_header = request.split()
 
-    method = first_line[0]
-    url = first_line[1]
-    version = first_line[2]
+    method = http_header[0]
+    url = http_header[1]
+    version = http_header[2]
 
     # server -> client 응답 구성
     # 각 요청마다 handler 연결

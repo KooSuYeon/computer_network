@@ -3,8 +3,8 @@ from socket import *
 # Socket생성의 두 가지 요소 : IP, PORT
 # 1. 내 머신의 IP
 # 2. 사용하려는 PORT
-serverName = '115.21.108.6'
-serverPort = 8891
+serverName = '172.30.1.56'
+serverPort = 8892
 
 def send_request(host, port, request):
     # TCP socket 생성 후 connection 생성
@@ -48,6 +48,10 @@ def send_http_put_request(host, port, path, data):
     request = f"PUT {path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: {content_length}\r\n\r\n{data}"
     send_request(host, port, request)
 
-send_http_head_request(serverName, serverPort, "/style.css")
-send_http_get_request(serverName, serverPort, "/index.html")
-send_http_put_request(serverName, serverPort, '/result.txt', 'Update content')
+# send_http_head_request(serverName, serverPort, "/style.css")
+# send_http_get_request(serverName, serverPort, "/index.html")
+send_http_get_request(serverName, serverPort, "/query.html")
+print("Input your name and age (ex. suyeon 21)")
+client_input = input(">>> ")
+send_http_post_request(serverName, serverPort, '/result', client_input)
+# send_http_put_request(serverName, serverPort, '/result.txt', 'Update content')
