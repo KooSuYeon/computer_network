@@ -152,8 +152,9 @@ server.py , client.py 분리하여 작성
 #### >>> server
 ##### 4-1. put_handler (client로부터 온 HTTP header PUT /style.css HTTP/1.1 처리)
 - client에게 result.txt 수정 요청 -> PUT 요청
-1. client에게 입력받은 name, age 분리 및 result.txt에 수정 내용 반영
-2. 올바른 version인지 확인 (HTTP/1.0 or HTTP/1.1)
-3. 입력받은 name, age를 file 에 반영
-4. client에게 받아온 Update된 정보 -> client에게 전송
+1. client에게 수정하고 싶은 이름과 나이의 입력을 받음.
+2. send_http_put_request(host, port, "result.txt", data)
+3. 올바른 version인지 확인 (HTTP/1.0 or HTTP/1.1)
+4. 입력받은 name, age를 file 에 반영
+5. client에게 받아온 Update된 정보 -> client에게 전송
 
