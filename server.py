@@ -104,8 +104,8 @@ def request_handler(client_socket):
     # client -> server
     # client로부터 받아오는 HTTP header 정보
     request = client_socket.recv(1024).decode()
-    print(f"From Client{len(client_sockets)} HTTP header : {request}")
-
+    print(f"From Client{len(client_sockets)} HTTP header : {request}\n")
+    
     http_header = request.split()
 
     method = http_header[0]
