@@ -132,7 +132,6 @@ def request_handler(client_socket):
     elif method == "PUT":
         put_handler(version, url, client_socket, request)
 
-    # else:
     connectionSocket.close()
     
 

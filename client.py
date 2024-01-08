@@ -58,15 +58,25 @@ def send_http_put_request(host, port, path, data):
     request = f"PUT {path} HTTP/1.1\r\nHost: {host}\r\nContent-length: {content_length}\r\n\r\n{open}\"name\": {name} ,\n\"age\": {age} {close}"
     send_request(host, port, request)
 
+while True:
+    method = input("What method ? (get, post, head, put) >>> ")
 
-# send_http_get_request(serverName, serverPort, "/index.html")
-# send_http_get_request(serverName, serverPort, "/query.html")
-# print("Input your name and age (ex. suyeon 21)")
-# client_input = input(">>> ")
-# send_http_post_request(serverName, serverPort, '/result', client_input)
+    if method == "get":
+        send_http_get_request(serverName, serverPort, "/index.html")
+    elif method == "post":
+        send_http_get_request(serverName, serverPort, "/query.html")
+        print("Input your name and age (ex. suyeon 21)")
+        client_input = input(">>> ")
+        send_http_post_request(serverName, serverPort, '/result', client_input)
 
-# send_http_head_request(serverName, serverPort, "/style.css")
-name = input("Input changing name >>> ")
-age = input("Input changing age >>> ")
-data = name + " " + age
-send_http_put_request(serverName, serverPort, '/result.txt', data)
+    elif method == "head":
+        send_http_head_request(serverName, serverPort, "/style.css")
+
+    elif method == "put":
+        name = input("Input changing name >>> ")
+        age = input("Input changing age >>> ")
+        data = name + " " + age
+        send_http_put_request(serverName, serverPort, '/result.txt', data)
+
+
+
