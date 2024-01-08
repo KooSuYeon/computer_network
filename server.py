@@ -36,8 +36,8 @@ def get_handler(version, url, client_socket):
 # POST handler : query.html에 입력 후 submit 처리 (INPUT)
 def post_handler(version, url, client_socket, message):
     lines = message.split('\n')
-    name_line = lines[-3]
-    age_line = lines[-2]
+    name_line = lines[5]
+    age_line = lines[6]
     name_p = name_line.split(' ')
     age_p = age_line.split(' ')
     name = name_p[1]
@@ -77,13 +77,13 @@ def head_handler(version, url, client_socket):
 # PUT handler : result.txt 수정 처리 (UPDATE)
 def put_handler(version, url, client_socket, message):
     lines = message.split('\n')
-    name_line = lines[-3]
-    age_line = lines[-2]
+    name_line = lines[5]
+    age_line = lines[6]
     name_p = name_line.split(' ')
     age_p = age_line.split(' ')
     name = name_p[1]
     age = age_p[1]
-
+    
     if version not in ["HTTP/1.0", "HTTP/1.1"]:
         client_socket.send("HTTP/1.1 400 Bad Request\n".encode())
     
