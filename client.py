@@ -39,7 +39,7 @@ def send_http_post_request(host, port, path, data):
     age_name = data.split(' ')
     name = age_name[0]
     age = age_name[1]
-    request = f"POST {path} HTTP/1.1\r\nHost: {host}\r\nContent-length: {content_length}\r\n{open} \"name\": \"{name}\",\n \"age\": \"{age}\"{close}"
+    request = f"POST {path} HTTP/1.1\r\nHost: {host}\r\nContent-length: {content_length}\r\n\r\n{open} \"name\": {name},\n \"age\": {age}{close}"
     send_request(host, port, request)
 
 # HTTP HEAD 요청 header
@@ -51,11 +51,11 @@ def send_http_head_request(host, port, path):
 def send_http_put_request(host, port, path, data):
     content_length = len(data)
     open = '{\r\n'
-    close = '\r\n}\r\n'
+    close = '\r\n}'
     age_name = data.split(' ')
     name = age_name[0]
     age = age_name[1]
-    request = f"PUT {path} HTTP/1.1\r\nHost: {host}\r\nContent-length: {content_length}\r\n\r\n{open} \"name\": \"{name}\",\n \"age\": \"{age}\"{close}"
+    request = f"PUT {path} HTTP/1.1\r\nHost: {host}\r\nContent-length: {content_length}\r\n\r\n{open} \"name\": {name},\n \"age\": {age}{close}"
     send_request(host, port, request)
 
 

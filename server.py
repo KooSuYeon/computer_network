@@ -35,8 +35,9 @@ def get_handler(version, url, client_socket):
 
 # POST handler : query.html에 입력 후 submit 처리 (INPUT)
 def post_handler(version, url, client_socket, message):
-    name_line = message.split('\n')[-3]
-    age_line = message.split('\n')[-2]
+    lines = message.split('\n')
+    name_line = lines[-3]
+    age_line = lines[-2]
     name_p = name_line.split(' ')
     age_p = age_line.split(' ')
     name = name_p[1]
@@ -48,7 +49,7 @@ def post_handler(version, url, client_socket, message):
     else:
         # 파일에 데이터 추가 모드('a')로 열고 데이터를 씁니다.
         with open("result.txt", 'a') as file:
-            file.write(name + age + '\n')
+            file.write(name + " " + age + '\n')
 
         response = "HTTP/1.1 200 OK\n\n{}".format(html_data)
         client_socket.send(response.encode())
@@ -75,8 +76,9 @@ def head_handler(version, url, client_socket):
         
 # PUT handler : result.txt 수정 처리 (UPDATE)
 def put_handler(version, url, client_socket, message):
-    name_line = message.split('\n')[-3]
-    age_line = message.split('\n')[-2]
+    lines = message.split('\n')
+    name_line = lines[-3]
+    age_line = lines[-2]
     name_p = name_line.split(' ')
     age_p = age_line.split(' ')
     name = name_p[1]
