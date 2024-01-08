@@ -35,17 +35,19 @@ def get_handler(version, url, client_socket):
 
 # POST handler : query.html에 입력 후 submit 처리 (INPUT)
 def post_handler(version, url, client_socket, message):
-    last_line = message.split('\n')[-1]
-    age_name = last_line.split(' ')
-    name = age_name[0]
-    age = age_name[1]
+    name_line = message.split('\n')[-3]
+    age_line = message.split('\n')[-2]
+    name_p = name_line.split(' ')
+    age_p = age_line.split(' ')
+    name = name_p[1]
+    age = age_p[1]
     html_data = "<!DOCTYPE html><html><body><h2>NAME : {}</br>AGE : {}</h2></body></html>".format(name, age)
 
     if version not in ["HTTP/1.0", "HTTP/1.1"]:
         client_socket.send("HTTP/1.1 400 Bad Request\n".encode())
     else:
         # 파일에 데이터 추가 모드('a')로 열고 데이터를 씁니다.
-        with open("result.txt", 'w') as file:
+        with open("result.txt", 'a') as file:
             file.write(name + age + '\n')
 
         response = "HTTP/1.1 200 OK\n\n{}".format(html_data)
@@ -71,13 +73,14 @@ def head_handler(version, url, client_socket):
             client_socket.send("HTTP/1.1 404 Not Found\n".encode())
 
         
-
 # PUT handler : result.txt 수정 처리 (UPDATE)
 def put_handler(version, url, client_socket, message):
-    last_line = message.split('\n')[-1]
-    age_name = last_line.split(' ')
-    name = age_name[0]
-    age = age_name[1]
+    name_line = message.split('\n')[-3]
+    age_line = message.split('\n')[-2]
+    name_p = name_line.split(' ')
+    age_p = age_line.split(' ')
+    name = name_p[1]
+    age = age_p[1]
 
     if version not in ["HTTP/1.0", "HTTP/1.1"]:
         client_socket.send("HTTP/1.1 400 Bad Request\n".encode())
@@ -85,8 +88,8 @@ def put_handler(version, url, client_socket, message):
     else:
 
         file_path = "." + url
-        update_data = name + age
-        with open(file_path, 'a') as file:
+        update_data = name + " " + age
+        with open(file_path, 'w') as file:
             file.write(update_data + '\n')
 
         with open(file_path, 'r') as read_file:
