@@ -4,7 +4,7 @@ from socket import *
 # 1. 내 머신의 IP
 # 2. 사용하려는 PORT
 serverName = '172.30.1.56'
-serverPort = 9002
+serverPort = 9003
 
 def send_request(host, port, request):
     # TCP socket 생성 후 connection 생성
@@ -55,21 +55,18 @@ def send_http_put_request(host, port, path, data):
     age_name = data.split(' ')
     name = age_name[0]
     age = age_name[1]
-    request = f"PUT {path} HTTP/1.1\r\nHost: {host}\r\nContent-length: {content_length}\r\n\r\n{open}\"name\": {name},\n\"age\": {age} {close}"
+    request = f"PUT {path} HTTP/1.1\r\nHost: {host}\r\nContent-length: {content_length}\r\n\r\n{open}\"name\": {name} ,\n\"age\": {age} {close}"
     send_request(host, port, request)
 
 
 # send_http_get_request(serverName, serverPort, "/index.html")
-send_http_get_request(serverName, serverPort, "/query.html")
-print("Input your name and age (ex. suyeon 21)")
-client_input = input(">>> ")
-send_http_post_request(serverName, serverPort, '/result', client_input)
+# send_http_get_request(serverName, serverPort, "/query.html")
+# print("Input your name and age (ex. suyeon 21)")
+# client_input = input(">>> ")
+# send_http_post_request(serverName, serverPort, '/result', client_input)
 
 # send_http_head_request(serverName, serverPort, "/style.css")
-# with open("./result.txt", 'r') as result_file:
-#     result_content = result_file.read()
-#     print(f"Now in result.txt: {result_content}")
-# name = input("Input changing name >>> ")
-# age = input("Input changing age >>> ")
-# data = name + " " + age
-# send_http_put_request(serverName, serverPort, '/result.txt', data)
+name = input("Input changing name >>> ")
+age = input("Input changing age >>> ")
+data = name + " " + age
+send_http_put_request(serverName, serverPort, '/result.txt', data)
