@@ -194,6 +194,9 @@ The value received is written in result.txt.</br>
 Result.txt</br>
 ![picture20](https://github.com/KooSuYeon/computer_network/assets/124496650/6fe0dc55-39e5-425f-8a8e-13a3df7e54e6)
 </br>
+
+- - - 
+
 ## >>>> HEAD Request
 
 #### >>> Client
