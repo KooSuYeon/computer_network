@@ -1,8 +1,7 @@
-# TCP programming + HTTP protocol Request
+# TCP Programming + HTTP Protocol Request
 
+---
 
-
-- - - 
 <div align="center">
   
 Server, Client programming using socket communication (programming languages are implemented in C, Java, Python)</br>
@@ -18,9 +17,10 @@ If more than two environments are not available, you can also proceed to localho
 
 </div>
 
-- - - 
+---
+
 <div align="center">
-### TCP programming Characteristics
+### TCP Programming Characteristics
 - How to create a new socket for each request, communication between the client and the server
 - It is done using multiple sockets.
 
@@ -33,19 +33,20 @@ If more than two environments are not available, you can also proceed to localho
 - Tells you which protocol to use as an argument for the Socket() function,
 - Assign socket (AF_INET, SOCK_STREAM) because it is a TCP method
 </br>
-##### Source's address and port number
+##### Source's Address and Port Number
 - Address and port number of the destination
 - Associate address with port number as a bind() function
 </br>
-##### Destination's address and port number
+##### Destination's Address and Port Number
 - Address and port number of the destination
-- In TCP, the address and port number of destination are bundled with the connect() function.
-- UDP sends only the address and port number of destination as an argument for the sendto() function.
+- In TCP, the address and port number of the destination are bundled with the connect() function.
+- UDP sends only the address and port number of the destination as an argument for the sendto() function.
 </br>
   
 </div>
 
-- - - 
+---
+
 <div align="center">
 ### Socket
 Create Server.py , client.py separately
@@ -53,16 +54,16 @@ Language: Python
 
 ### How it works
 1. Server Operation
-Run server code on the PC you want to run as server
+Run server code on the PC you want to run as the server
 >> python server.py
 2. Request according to Client HTTP method -> Send to server
-Run client code on PC to run as client
+Run client code on PC to run as the client
 >> python client.py
 3. Server's Response -> Send to client
 
 </div>
 
-- - -
+---
 
 #### Caution
 - Check if the firewall is turned off
@@ -78,7 +79,7 @@ Run client code on PC to run as client
 (Allows Socket to accept incoming connections while waiting at IP, PORT)
 - Specify the number of clients that can be heard at the same time (create an array of clients to contain to show the order)
 
-2. client connection (use accept() function in socket)
+2. client connection (use accept() function in the socket)
 ![picture2](https://github.com/KooSuYeon/IBookLeague/assets/124496650/a87b1026-9805-4b90-aa11-24179825e44b)
 -Socket to communicate with the client, get the client's address (IP, PORT) (until it is connected to the client)
 
@@ -87,9 +88,9 @@ Run client code on PC to run as client
 2. client request
 
 ![picture3](https://github.com/KooSuYeon/IBookLeague/assets/124496650/a713fc6f-e544-4534-89cf-c00b5a7d8df3)
-1. Classify methods to send to server
+1. Classify methods to send to the server
     - method에 따른 IP, PORT, path, data
-2. Configuring HTTP Header to send to server according to mehtod
+2. Configuring HTTP Header to send to the server according to the method
 3. Create a connection after creating a socket
 4. Send the HTTP header that you configured prior to the Socket you created
 
@@ -103,10 +104,10 @@ Run client code on PC to run as client
 
 - - - 
 
-## >>>> GET 요청
+## >>>> GET Request
 
-#### >>> client
-##### 4-1. send_http_get_request (compose request to send to server)
+#### >>> Client
+##### 4-1. send_http_get_request (compose request to send to the server)
 ![picture5](https://github.com/KooSuYeon/IBookLeague/assets/124496650/21cca91a-92b7-4aa2-88b9-f7e3f38d3860)
 ![picture6](https://github.com/KooSuYeon/IBookLeague/assets/124496650/b52c9fa8-2f9b-440c-934a-11b731fdacdc)
 
@@ -114,59 +115,47 @@ Run client code on PC to run as client
 2. HTTP header : GET /index.html HTTP/1.1\r\nHOST: {host}\r\n\r\n
 3. Create a socket to connect to the server and send it to the header client made of the socket
 
-
-
-#### >>> server
-##### 4-1. get_handler (handle HTTP header GET /index.html HTTP/1.1 from client)
+#### >>> Server
+##### 4-1. get_handler (handle HTTP header GET /index.html HTTP/1.1 from the client)
 
 ![picture7](https://github.com/KooSuYeon/IBookLeague/assets/124496650/0a48170e-5467-4417-8789-42b29de91127)
 
 - 172.30.1.56.9002/index.html -> GET request
-1. Verify correct version(HTTP/1.0 or HTTP/1.1)
-2. If it exists, read the corresponding html.</br>
-   Only index.html, query index.html exists in the current directory -> After the corresponding html contents are found Send to client
+1. Verify correct version (HTTP/1.0 or HTTP/1.1)
+2. If it exists, read the corresponding HTML.</br>
+   Only index.html, query index.html exists in the current directory -> After the corresponding HTML contents are found, send to the client
 
-
-Response code : 200
+Response code: 200
 Server Terminal
 ![picture8](https://github.com/KooSuYeon/IBookLeague/assets/124496650/bc475046-b28f-4a3f-a23f-6c178494c53c)
 
-
-Header information requested by Client, display in IP address -> server
+Header information requested by the client, displayed in IP address -> server
 Client Terminal
-![picture9](https://github.com/KooSuYeon/computer_network/assets/124496650/7d3cb263-a634-4ddf-bf6f-f72d11716ef6)
+![picture9](https://github.com/KooSuYeon/IBookLeague/assets/124496650/7d3cb263-a634-4ddf-bf6f-f72d11716ef6)
 
+Response code sent by the server, page requested by the client (index.html) -> displayed in the client
+![picture10](https://github.com/KooSuYeon/IBookLeague/assets/124496650/e2937da7-3b56-424e-8755-452cb46ea646)
 
-Response code sent by server, page requested by client (index.html) -> display in client
-![picture10](https://github.com/KooSuYeon/computer_network/assets/124496650/e2937da7-3b56-424e-8755-452cb46ea646)
-
-
-Response code : 404
+Response code: 404
 Page 404 GET Request
-![middle1](https://github.com/KooSuYeon/computer_network/assets/124496650/218319b3-056c-410c-9436-d1a0723148e5)
-
-
+![middle1](https://github.com/KooSuYeon/IBookLeague/assets/124496650/218319b3-056c-410c-9436-d1a0723148e5)
 
 Server Terminal
-<img width="452" alt="picture11" src="https://github.com/KooSuYeon/computer_network/assets/124496650/f712efa7-6588-4628-aed0-0e88421becfa">
+![picture11](https://github.com/KooSuYeon/IBookLeague/assets/124496650/f712efa7-6588-4628-aed0-0e88421becfa)
 
-
-
-Header information requested by Client, display in IP address -> server
-
+Header information requested by the client, displayed in IP address -> server
 Client Terminal
-![picture12](https://github.com/KooSuYeon/computer_network/assets/124496650/55f6bd07-82b4-45d3-b8a8-92ff935e3316)
+![picture12](https://github.com/KooSuYeon/IBookLeague/assets/124496650/55f6bd07-82b4-45d3-b8a8-92ff935e3316)
 
-
-Show in response code -> client sent by server
-![picture13](https://github.com/KooSuYeon/computer_network/assets/124496650/bf9ea1aa-7abb-449c-9060-cceb7e5b021f)
-
+Response code sent by the server, displayed in the client
+![picture13](https://github.com/KooSuYeon/IBookLeague/assets/124496650/bf9ea1aa-7abb-449c-9060-cceb7e5b021f)
 
 - - - 
-## >>>> POST 요청
 
-#### >>> client
-##### 4-1. send_http_post_request (compose request to send to server)
+## >>>> POST Request
+
+#### >>> Client
+##### 4-1. send_http_post_request (compose request to send to the server)
 
 ![picture14](https://github.com/KooSuYeon/computer_network/assets/124496650/13a7ab29-9cf6-4b32-ae35-92334f138d12)
 ![picture15](https://github.com/KooSuYeon/computer_network/assets/124496650/c980d806-6478-4853-a427-a7da64e64d7c)
@@ -175,27 +164,28 @@ Show in response code -> client sent by server
 2. HTTP header : POST /index.html HTTP/1.1\r\nHOST: {host}\r\n\r\n
 3. Create a socket to connect to the server and send it to the header client made of the socket
 
-#### >>> server
-##### 4-1. post_handler (handle HTTP header POST /index.html HTTP/1.1 from client)
+#### >>> Server
+##### 4-1. post_handler (handle HTTP header POST /index.html HTTP/1.1 from the client)
+
 ![picture16](https://github.com/KooSuYeon/computer_network/assets/124496650/a97f3234-b8f7-4191-984b-0b6bdd77a7f3)
 
-- Received from client -> POST Request
-1. Configuring html to be seen in name, age isolation, and /result received from client
+- Received from the client -> POST Request
+1. Configuring HTML to be seen in name, age isolation, and /result received from the client
 2. Verify correct version (HTTP/1.0 or HTTP/1.1)
-3. Create input name, age in file
-4. Read the html contents of the /result consisting of the information received from the client and send it to the client
+3. Create input name, age in the file
+4. Read the HTML contents of the /result consisting of the information received from the client and send it to the client
 
-Response code : 200
+Response code: 200
 Server Terminal
 
 ![picture17](https://github.com/KooSuYeon/computer_network/assets/124496650/85ffd31c-069d-4d8f-b65b-9f3e8f153706)
 
-Header information requested by Client, IP address, content-length entered, content -> server displayed
+Header information requested by the client, IP address, content-length entered, content -> server displayed
 
 Client Terminal
 ![picture18](https://github.com/KooSuYeon/computer_network/assets/124496650/c20081da-9e94-46ea-8c8c-adad61724c6d)
 
-Response code sent by server, post request result -> display in client
+Response code sent by the server, post request result -> displayed in the client
 
 (After calling the page where you can enter information - GET method, enter information - POST method)
 Request POST by entering the name and age to write to the user
@@ -206,47 +196,40 @@ The value received is written in result.txt.
 Result.txt
 ![picture20](https://github.com/KooSuYeon/computer_network/assets/124496650/6fe0dc55-39e5-425f-8a8e-13a3df7e54e6)
 
+## >>>> HEAD Request
 
-- - - 
-
-## >>>> HEAD 요청
-
-
-#### >>> client
-##### 4-1. send_http_head_request (compose request to send to server)
+#### >>> Client
+##### 4-1. send_http_head_request (compose request to send to the server)
 ![picture21](https://github.com/KooSuYeon/computer_network/assets/124496650/dedc78c8-8eba-4f2e-87c8-ddb97cb75dc7)
 ![picture22](https://github.com/KooSuYeon/computer_network/assets/124496650/4fc6a592-f176-482e-9dcb-45bfc38a5411)
-
 
 1. send_http_head_request(host, port, "/style.css")
 2. HTTP header : HEAD /style.css HTTP/1.1\r\nHOST: {host}\r\n\r\n
 3. Create a socket to connect to the server and send it to the header client made of the socket
 
-
-#### >>> server
-##### 4-1. head_handler (handle HTTP header HEAD /style.css HTTP/1.1 from client)
+#### >>> Server
+##### 4-1. head_handler (handle HTTP header HEAD /style.css HTTP/1.1 from the client)
 ![picture23](https://github.com/KooSuYeon/computer_network/assets/124496650/842dcbac-7ebb-4909-a39b-82ed90a02977)
-
 
 - 172.30.1.56.9002/style.css Presence Confirmation -> HEAD Request
 1. Verify correct version (HTTP/1.0 or HTTP/1.1)
-2. If there is a css, only the header information of the request is read.</br>
-   If css exists, send "HTTP/1.0 200 OK" -> to client
+2. If there is a CSS, only the header information of the request is read.</br>
+   If CSS exists, send "HTTP/1.0 200 OK" -> to the client
 
-Response code : 200
+Response code: 200
 Server Terminal
 ![picture24](https://github.com/KooSuYeon/computer_network/assets/124496650/3b0d0f45-a051-4234-b9dc-9a74af36cfcd)
 
-Header information requested by Client, display in IP address -> server
-Client Terminal!
-![picure25](https://github.com/KooSuYeon/computer_network/assets/124496650/6dd80745-e784-47b2-882b-58ff86d3a7ba)
+Header information requested by the client, displayed in IP address -> server
+Client Terminal
+![picture25](https://github.com/KooSuYeon/computer_network/assets/124496650/6dd80745-e784-47b2-882b-58ff86d3a7ba)
 
 Show in response code -> client sent by server
 ![picture26](https://github.com/KooSuYeon/computer_network/assets/124496650/28d68442-75e1-454b-a0e7-5c9ec34a3bcb)
 
 
-Response code : 404
-404 css page request
+Response code: 404
+404 CSS page request
 ![picture27](https://github.com/KooSuYeon/computer_network/assets/124496650/201203be-bb16-4bb7-98e9-51aa021f4cce)
 
 Server Terminal
@@ -256,58 +239,4 @@ Client Terminal
 ![picture29](https://github.com/KooSuYeon/computer_network/assets/124496650/43a4e319-a7b1-4092-8da0-266872957f57)
 ![picture30](https://github.com/KooSuYeon/computer_network/assets/124496650/db00dde5-8acd-4648-a6cf-2ae8ec81a4b1)
 
-
-
-- - - 
-
-## >>>> PUT 요청
-
-
-#### >>> client
-##### 4-1. send_http_put_request (compose request to send to server)
-![picture31](https://github.com/KooSuYeon/computer_network/assets/124496650/ffaaea88-bbb1-4b33-9b55-f643093fb7ca)
-![picture32](https://github.com/KooSuYeon/computer_network/assets/124496650/57eaf292-aaed-41c3-b291-0ec0c2bf019b)
-
-
-
-1. send_http_put_request(host, port, "/result.txt", "John 25")
-2. HTTP header : PUT /result.txt HTTP/1.1\r\nHost: {host}\r\nContent-Length: {content_length}\r\n\r\n{data}"
-3. Create a socket to connect to the server and send it to the header client made of the socket
-
-
-#### >>> server
-##### 4-1. put_handler (handle HTTP header PUT /style.css HTTP/1.1 from client)
-![picture33](https://github.com/KooSuYeon/computer_network/assets/124496650/1f45b009-2e43-4de0-b3d4-d2a24493eddf)
-
-
-- Request result.txt modification to client -> Request PUT
-1. Receive input from client of the name and age you want to modify.
-2. 2. send_http_put_request(host, port, "result.txt", data)
-3. Verify correct version (HTTP/1.0 or HTTP/1.1)
-4. Reflect the input name, age in the file
-5. Updated information received from client -> Send to client
-
-Response code : 200
-Server Terminal
-
-![picture34](https://github.com/KooSuYeon/computer_network/assets/124496650/cd3a4e54-cdab-4cec-9f42-b3727a739993)
-
-
-Header information requested by Client, IP address, content-length entered, content -> server displayed
-
-Client Terminal
-Request a PUT by entering the name and age to change to the user
-
-Read the changed result.txt content when the PUT request was successful.
-![picture35](https://github.com/KooSuYeon/computer_network/assets/124496650/11415942-998c-4670-8559-49b13a6a0480)
-
-
-response code sent by server, updated information -> display in client
-
-Result.txt
-
-
-![picture36](https://github.com/KooSuYeon/computer_network/assets/124496650/b1e58e3d-69c8-46d1-8bc0-a471333fd665)
-
-![picture37](https://github.com/KooSuYeon/computer_network/assets/124496650/cce791dd-3654-4cd5-a8a8-c133f3aa3883)
 
