@@ -19,16 +19,12 @@ If more than two environments are not available, you can also proceed to localho
 
 ---
 
-<div align="center">
 ### TCP Programming Characteristics
 - How to create a new socket for each request, communication between the client and the server
 - It is done using multiple sockets.
 
-</div>
 
-<div align="center">
 ### Socket
-</br>
 ##### Protocol
 - Tells you which protocol to use as an argument for the Socket() function,
 - Assign socket (AF_INET, SOCK_STREAM) because it is a TCP method
@@ -43,25 +39,21 @@ If more than two environments are not available, you can also proceed to localho
 - UDP sends only the address and port number of the destination as an argument for the sendto() function.
 </br>
   
-</div>
-
 ---
 
-<div align="center">
 ### Socket
 Create Server.py , client.py separately
 Language: Python
 
 ### How it works
-1. Server Operation
-Run server code on the PC you want to run as the server
->> python server.py
-2. Request according to Client HTTP method -> Send to server
-Run client code on PC to run as the client
+1. Server Operation</br>
+Run server code on the PC you want to run as the server</br>
+>> python server.py</br>
+2. Request according to Client HTTP method -> Send to server</br>
+Run client code on PC to run as the client</br>
 >> python client.py
 3. Server's Response -> Send to client
 
-</div>
 
 ---
 
@@ -125,29 +117,29 @@ Run client code on PC to run as the client
 2. If it exists, read the corresponding HTML.</br>
    Only index.html, query index.html exists in the current directory -> After the corresponding HTML contents are found, send to the client
 
-Response code: 200
-Server Terminal
+Response code: 200</br>
+Server Terminal</br>
 ![picture8](https://github.com/KooSuYeon/IBookLeague/assets/124496650/bc475046-b28f-4a3f-a23f-6c178494c53c)
 
-Header information requested by the client, displayed in IP address -> server
-Client Terminal
+Header information requested by the client, displayed in IP address -> server</br>
+Client Terminal</br>
 ![picture9](https://github.com/KooSuYeon/IBookLeague/assets/124496650/7d3cb263-a634-4ddf-bf6f-f72d11716ef6)
 
-Response code sent by the server, page requested by the client (index.html) -> displayed in the client
+Response code sent by the server, page requested by the client (index.html) -> displayed in the client</br>
 ![picture10](https://github.com/KooSuYeon/IBookLeague/assets/124496650/e2937da7-3b56-424e-8755-452cb46ea646)
 
-Response code: 404
-Page 404 GET Request
+Response code: 404</br>
+Page 404 GET Request</br>
 ![middle1](https://github.com/KooSuYeon/IBookLeague/assets/124496650/218319b3-056c-410c-9436-d1a0723148e5)
 
 Server Terminal
 ![picture11](https://github.com/KooSuYeon/IBookLeague/assets/124496650/f712efa7-6588-4628-aed0-0e88421becfa)
 
-Header information requested by the client, displayed in IP address -> server
-Client Terminal
+Header information requested by the client, displayed in IP address -> server</br>
+Client Terminal</br>
 ![picture12](https://github.com/KooSuYeon/IBookLeague/assets/124496650/55f6bd07-82b4-45d3-b8a8-92ff935e3316)
 
-Response code sent by the server, displayed in the client
+Response code sent by the server, displayed in the client</br>
 ![picture13](https://github.com/KooSuYeon/IBookLeague/assets/124496650/bf9ea1aa-7abb-449c-9060-cceb7e5b021f)
 
 - - - 
@@ -175,21 +167,21 @@ Response code sent by the server, displayed in the client
 3. Create input name, age in the file
 4. Read the HTML contents of the /result consisting of the information received from the client and send it to the client
 
-Response code: 200
-Server Terminal
+Response code: 200</br>
+Server Terminal</br>
 
 ![picture17](https://github.com/KooSuYeon/computer_network/assets/124496650/85ffd31c-069d-4d8f-b65b-9f3e8f153706)
 
-Header information requested by the client, IP address, content-length entered, content -> server displayed
+Header information requested by the client, IP address, content-length entered, content -> server displayed</br>
 
-Client Terminal
+Client Terminal</br>
 ![picture18](https://github.com/KooSuYeon/computer_network/assets/124496650/c20081da-9e94-46ea-8c8c-adad61724c6d)
 
-Response code sent by the server, post request result -> displayed in the client
+Response code sent by the server, post request result -> displayed in the client</br>
 
-(After calling the page where you can enter information - GET method, enter information - POST method)
-Request POST by entering the name and age to write to the user
-The value received is written in result.txt.
+(After calling the page where you can enter information - GET method, enter information - POST method)</br>
+Request POST by entering the name and age to write to the user</br>
+The value received is written in result.txt.</br>
 
 ![picture19](https://github.com/KooSuYeon/computer_network/assets/124496650/b1649a0a-b200-4a83-b109-1d49fad3b458)
 
@@ -216,26 +208,26 @@ Result.txt
 2. If there is a CSS, only the header information of the request is read.</br>
    If CSS exists, send "HTTP/1.0 200 OK" -> to the client
 
-Response code: 200
-Server Terminal
+Response code: 200</br>
+Server Terminal</br>
 ![picture24](https://github.com/KooSuYeon/computer_network/assets/124496650/3b0d0f45-a051-4234-b9dc-9a74af36cfcd)
 
-Header information requested by the client, displayed in IP address -> server
-Client Terminal
+Header information requested by the client, displayed in IP address -> server</br>
+Client Terminal</br>
 ![picture25](https://github.com/KooSuYeon/computer_network/assets/124496650/6dd80745-e784-47b2-882b-58ff86d3a7ba)
 
-Show in response code -> client sent by server
+Show in response code -> client sent by server</br>
 ![picture26](https://github.com/KooSuYeon/computer_network/assets/124496650/28d68442-75e1-454b-a0e7-5c9ec34a3bcb)
 
 
-Response code: 404
-404 CSS page request
+Response code: 404</br>
+404 CSS page request</br>
 ![picture27](https://github.com/KooSuYeon/computer_network/assets/124496650/201203be-bb16-4bb7-98e9-51aa021f4cce)
 
-Server Terminal
+Server Terminal</br>
 ![picture28](https://github.com/KooSuYeon/computer_network/assets/124496650/2281ad39-e290-45cf-a365-c2e0a6c7546e)
 
-Client Terminal
+Client Terminal</br>
 ![picture29](https://github.com/KooSuYeon/computer_network/assets/124496650/43a4e319-a7b1-4092-8da0-266872957f57)
 ![picture30](https://github.com/KooSuYeon/computer_network/assets/124496650/db00dde5-8acd-4648-a6cf-2ae8ec81a4b1)
 
