@@ -202,8 +202,9 @@ The value received is written in result.txt.</br>
 
 
 </br>
+
 Result.txt</br>
-![picture20](https://github.com/KooSuYeon/computer_network/assets/124496650/6fe0dc55-39e5-425f-8a8e-13a3df7e54e6)
+![picture20](https://github.com/KooSuYeon/computer_network/assets/124496650/bf64ac02-f60a-4a2b-8620-cf4c51f1787e)
 </br>
 
 - - - 
@@ -235,10 +236,14 @@ Server Terminal</br>
 </br>
 Header information requested by the client, displayed in IP address -> server</br>
 Client Terminal</br>
-![picture25](https://github.com/KooSuYeon/computer_network/assets/124496650/6dd80745-e784-47b2-882b-58ff86d3a7ba)
+
+![picture20](https://github.com/KooSuYeon/computer_network/assets/124496650/bf64ac02-f60a-4a2b-8620-cf4c51f1787e)
+
 </br>
 Show in response code -> client sent by server</br>
-![head2](https://github.com/KooSuYeon/computer_network/assets/124496650/5aafb995-9d58-420f-bc78-7ebbd4d02c28)
+
+![head2](https://github.com/KooSuYeon/computer_network/assets/124496650/0439bf6a-a10c-4435-9f8a-5e3721f6c48b)
+
 
 </br>
 
