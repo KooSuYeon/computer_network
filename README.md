@@ -245,7 +245,7 @@ Client Terminal</br>
 ## >>>> POST Request
 
 >>> client
-4-1. send_http_put_request (compose request to send to the server)
+##### 4-1. send_http_put_request (compose request to send to the server)
 
 ![put1](https://github.com/KooSuYeon/computer_network/assets/124496650/268b839f-58f8-4366-b3dc-8207179f88fe)
 ![put2](https://github.com/KooSuYeon/computer_network/assets/124496650/56e4b1a1-f376-4e21-9fe2-efbc64c7ee7c)
