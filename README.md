@@ -7,7 +7,8 @@
 Server, Client programming using socket communication</br>
 (programming languages are implemented in C, Java, Python)</br>
 After creating TCP-based socket programming, the Client requests an HTTP protocol GET/HEAD/POST/PUT Request</br>
-Server configures response messages according to Client's Request and implements them to respond (TCP-based Client submits program files implemented by Server)</br>
+Server configures response messages according to Client's Request and implements them to respond</br>
+(TCP-based Client submits program files implemented by Server)</br>
 Ex) 
 Method-Response xxx to perform at least 5 cases </br>
 GET-response 4xx, GET-response 2xx, HEAD-response 1xx, POST-response 2xx, POST-response 1xx, etc
