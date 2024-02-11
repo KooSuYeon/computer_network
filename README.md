@@ -119,34 +119,34 @@ Run client code on PC to run as the client</br>
 Response code: 200</br>
 Server Terminal</br>
 ![picture8](https://github.com/KooSuYeon/IBookLeague/assets/124496650/bc475046-b28f-4a3f-a23f-6c178494c53c)
+</br>
 
 Header information requested by the client, displayed in IP address -> server</br>
-Client Terminal
+Client Terminall</br>
 ![picture9](https://github.com/KooSuYeon/computer_network/assets/124496650/626c6cf8-51c3-4ee5-a288-ca5128b9203b)
+</br>
 
-
-Response code sent by the server, page requested by the client (index.html) -> displayed in the client
-
+Response code sent by the server, page requested by the client (index.html) -> displayed in the clientl</br>
 ![picture10](https://github.com/KooSuYeon/computer_network/assets/124496650/8f5587f8-cfb3-49a4-adb1-58d8cb424319)
-
+</br>
 
 Response code: 404</br>
-Page 404 GET Request
+Page 404 GET Requestl</br>
 ![picture11](https://github.com/KooSuYeon/computer_network/assets/124496650/b071ef05-8657-459a-aa50-054e8a2336aa)
+</br>
 
-
-Server Terminal
+Server Terminall</br>
 ![picture12](https://github.com/KooSuYeon/computer_network/assets/124496650/6d3be34a-f778-43b6-a071-943fe5c8aa00)
-
+</br>
 
 Header information requested by the client, displayed in IP address -> server</br>
-Client Terminal
+Client Terminall</br>
 ![picture13](https://github.com/KooSuYeon/computer_network/assets/124496650/c01db021-16a6-44ad-9711-20d7294b6ac8)
+</br>
 
-
-Response code sent by the server, displayed in the client
+Response code sent by the server, displayed in the clientl</br>
 ![picture14](https://github.com/KooSuYeon/computer_network/assets/124496650/c13eccca-6631-4f67-a502-5df6c7247d99)
-
+</br>
 
 - - - 
 
@@ -182,7 +182,7 @@ Header information requested by the client, IP address, content-length entered, 
 
 Client Terminal</br>
 ![picture18](https://github.com/KooSuYeon/computer_network/assets/124496650/c20081da-9e94-46ea-8c8c-adad61724c6d)
-
+</br>
 Response code sent by the server, post request result -> displayed in the client</br>
 
 (After calling the page where you can enter information - GET method, enter information - POST method)</br>
@@ -190,10 +190,10 @@ Request POST by entering the name and age to write to the user</br>
 The value received is written in result.txt.</br>
 
 ![picture19](https://github.com/KooSuYeon/computer_network/assets/124496650/b1649a0a-b200-4a83-b109-1d49fad3b458)
-
+</br>
 Result.txt
 ![picture20](https://github.com/KooSuYeon/computer_network/assets/124496650/6fe0dc55-39e5-425f-8a8e-13a3df7e54e6)
-
+</br>
 ## >>>> HEAD Request
 
 #### >>> Client
@@ -217,24 +217,26 @@ Result.txt
 Response code: 200</br>
 Server Terminal</br>
 ![picture24](https://github.com/KooSuYeon/computer_network/assets/124496650/3b0d0f45-a051-4234-b9dc-9a74af36cfcd)
-
+</br>
 Header information requested by the client, displayed in IP address -> server</br>
 Client Terminal</br>
 ![picture25](https://github.com/KooSuYeon/computer_network/assets/124496650/6dd80745-e784-47b2-882b-58ff86d3a7ba)
-
+</br>
 Show in response code -> client sent by server</br>
 ![picture26](https://github.com/KooSuYeon/computer_network/assets/124496650/28d68442-75e1-454b-a0e7-5c9ec34a3bcb)
-
+</br>
 
 Response code: 404</br>
 404 CSS page request</br>
 ![picture27](https://github.com/KooSuYeon/computer_network/assets/124496650/201203be-bb16-4bb7-98e9-51aa021f4cce)
-
+</br>
 Server Terminal</br>
 ![picture28](https://github.com/KooSuYeon/computer_network/assets/124496650/2281ad39-e290-45cf-a365-c2e0a6c7546e)
+</br>
 
 Client Terminal</br>
 ![picture29](https://github.com/KooSuYeon/computer_network/assets/124496650/43a4e319-a7b1-4092-8da0-266872957f57)
+</br>
 ![picture30](https://github.com/KooSuYeon/computer_network/assets/124496650/db00dde5-8acd-4648-a6cf-2ae8ec81a4b1)
-
+</br>
 
