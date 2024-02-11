@@ -5,115 +5,204 @@
 - - - 
 <div align="center">
   
-소켓 통신을 활용하여 Server, Client 프로그램 작성 (프로그래밍 언어는 C, Java, Python 으로 구현)</br>
-TCP 기반 소켓프로그래밍 작성후 Client에서는 HTTP 프로토콜의 GET/HEAD/POST/PUT Request를 요청하여</br>
-Server에서는 Client의 Request에따라 응답 메시지를 구성하여 Response하도록 구현 (TCP 기반 Client, Server 구현한 프로그램 파일을 제출)</br>
-예) 
-Method-응답 xxx의 case 5개 이상 수행 </br>
-GET-응답 4xx, GET-응답 2xxx, HEAD-응답 1xx, POST-응답 2xxx, POST-응답 1xx 등
+Server, Client programming using socket communication (programming languages are implemented in C, Java, Python)</br>
+After creating TCP-based socket programming, the Client requests an HTTP protocol GET/HEAD/POST/PUT Request</br>
+Server configures response messages according to Client's Request and implements them to respond (TCP-based Client submits program files implemented by Server)</br>
+Ex) 
+Method-Response xxx to perform at least 5 cases </br>
+GET-response 4xx, GET-response 2xx, HEAD-response 1xx, POST-response 2xx, POST-response 1xx, etc
 
-와이어샤크로 해당 메서드의 HTTP format 캡쳐</br>
-소켓 통신은 PC가 2대 이상이면 Client, Server 실행은 분리하여 진행을 권장</br>
-2대 이상 환경이 안되는 경우는 localhost로 진행도 가능
+HTTP format capture for that method with wireshark</br>
+Socket communication is recommended if there are more than two PCs, separate Client and Server runs</br>
+If more than two environments are not available, you can also proceed to localhost
 
 </div>
 
 - - - 
-
-### TCP programming 
-server.py , client.py 분리하여 작성
-
-
-#### 1. server 작동
-#### 2. client HTTP method에 따른 요청 -> server에 보냄
-#### 3. server의 응답 -> client에 반환 요청 보냄
+<div align="center">
+### TCP programming Characteristics
+How to create a new socket for each request, communication between the client and the server</br>
+It is done using multiple sockets.</br>
 
 
+### Socket
+</br>
+##### Protocol
+- Tells you which protocol to use as an argument for the Socket() function,
+- Assign socket (AF_INET, SOCK_STREAM) because it is a TCP method
+</br>
+##### Source's address and port number
+- Address and port number of the destination
+- Associate address with port number as a bind() function
+</br>
+##### Destination's address and port number
+- Address and port number of the destination
+- In TCP, the address and port number of destination are bundled with the connect() function.
+- UDP sends only the address and port number of destination as an argument for the sendto() function.
+</br>
+  
+</div>
 
 - - - 
+<div align="center">
+### Socket
+Create Server.py , client.py separately
+Language: Python
+
+### How it works
+1. Server Operation
+Run server code on the PC you want to run as server
+>> python server.py
+2. Request according to Client HTTP method -> Send to server
+Run client code on PC to run as client
+>> python client.py
+3. Server's Response -> Send to client
+
+</div>
+
+- - -
+
+#### Caution
+- Check if the firewall is turned off
+- Verify PC-Specific IP Address
+- Ensure client and server IP, PORT are matched
 
 #### << server.py >>
+1. Create TCP Socket and wait for connection (using Python's socket module)
+![picture1](https://github.com/KooSuYeon/IBookLeague/assets/124496650/78430b98-318f-4a08-8aee-61421e2cb79a)
+
+- socket (AF_INET, SOCK_STREAM) because it is a TCP method
+- Bind my PC's IP, PORT to be specified to Socket
+(Allows Socket to accept incoming connections while waiting at IP, PORT)
+- Specify the number of clients that can be heard at the same time (create an array of clients to contain to show the order)
+
+2. client connection (use accept() function in socket)
+![picture2](https://github.com/KooSuYeon/IBookLeague/assets/124496650/a87b1026-9805-4b90-aa11-24179825e44b)
+-Socket to communicate with the client, get the client's address (IP, PORT) (until it is connected to the client)
 
 
-##### 1. TCP Socket 생성 및 연결 대기 (Python의 socket 모듈 사용)
-- TCP 방법이기 떄문에 socket(AF_INET, SOCK_STREAM)
-- 내 PC의 IP, 지정해줄 PORT를 Socket에 바인딩 (Socket이 IP, PORT에서 대기하면서 들어오는 연결을 수락할 수 있게 해줌)
-- 동시에 들을 수 있는 client 수 지정 (순서를 보여주기 위해 client들이 담길 배열 생성)
+#### << server.py >>
+2. client request
 
-
-
-
-##### 2. client 연결 (socket의 accept()함수 이용)
-- client와 통신하기 위한 Socket, client의 주소(IP, PORT) 받아옴 (client와의 연결이 될 때까지)
-
-
-
-#### <<< client.py >>>
-
-
-##### 2. client request 요청
-- 1. server에게 보낼 method 분류
+![picture3](https://github.com/KooSuYeon/IBookLeague/assets/124496650/a713fc6f-e544-4534-89cf-c00b5a7d8df3)
+1. Classify methods to send to server
     - method에 따른 IP, PORT, path, data
-- 2. mehtod에 따른 server에게 보낼 HTTP header 구성
-- 3. Socket 생성 후 connection 생성
-- 4. 생성한 Socket에 앞서 구성한 HTTP header를 전송
+2. Configuring HTTP Header to send to server according to mehtod
+3. Create a connection after creating a socket
+4. Send the HTTP header that you configured prior to the Socket you created
 
 
-##### 3. request method 처리 (request_handler)
-- 새로 생성한 Socket으로 들어오는 HTTP header 정보 처리
-- HTTP header의 첫 줄에는 HTTP request method, 주소, HTTP version으로 구성되어 있음 (ex. GET /index.html HTTP/1.1)
-- 각 method마다 handler를 호출
+3. request method (request_handler)
+![picture4](https://github.com/KooSuYeon/IBookLeague/assets/124496650/a08a6bcb-f6f6-44b1-a246-3b25888c983d)
+- Processing HTTP header information coming into the newly created Socket
+- The first line of the HTTP header consists of the HTTP request method, address, and HTTP version
+(ex. GET /index.html HTTP/1.1)
+- Call Handler for each method
 
 - - - 
 
 ## >>>> GET 요청
 
-
 #### >>> client
-##### 4-1. send_http_get_request (server로 보낼 request 구성)
+##### 4-1. send_http_get_request (compose request to send to server)
+![picture5](https://github.com/KooSuYeon/IBookLeague/assets/124496650/21cca91a-92b7-4aa2-88b9-f7e3f38d3860)
+![picture6](https://github.com/KooSuYeon/IBookLeague/assets/124496650/b52c9fa8-2f9b-440c-934a-11b731fdacdc)
+
 1. send_http_get_request(host, port, "/index.html")
-2. HTTP header 구성 : GET /index.html HTTP/1.1\r\nHOST: {host}\r\n\r\n
-3. server와 연결할 Socket 생성 후 Socket으로 만든 header client에게 전송
+2. HTTP header : GET /index.html HTTP/1.1\r\nHOST: {host}\r\n\r\n
+3. Create a socket to connect to the server and send it to the header client made of the socket
+
 
 
 #### >>> server
-##### 4-1. get_handler (client로부터 온 HTTP header GET /index.html HTTP/1.1 처리)
-- 172.30.1.56.9002/index.html 접근 -> GET 요청
-1. 올바른 version인지 확인 (HTTP/1.0 or HTTP/1.1)
-2. 존재하는 html이라면 해당 html읽어옴.</br>
-   현재 디렉터리에는 index.html, queryindex.html만 존재 -> 해당 html 내용 앍어온 후 client 에게 전송
+##### 4-1. get_handler (handle HTTP header GET /index.html HTTP/1.1 from client)
+
+![picture7](https://github.com/KooSuYeon/IBookLeague/assets/124496650/0a48170e-5467-4417-8789-42b29de91127)
+
+- 172.30.1.56.9002/index.html -> GET request
+1. Verify correct version(HTTP/1.0 or HTTP/1.1)
+2. If it exists, read the corresponding html.</br>
+   Only index.html, query index.html exists in the current directory -> After the corresponding html contents are found Send to client
+
+
+Response code : 200
+Server Terminal
+![picture8](https://github.com/KooSuYeon/IBookLeague/assets/124496650/bc475046-b28f-4a3f-a23f-6c178494c53c)
+
+
+Header information requested by Client, display in IP address -> server
+Client Terminal
+![picture9](https://github.com/KooSuYeon/computer_network/assets/124496650/7d3cb263-a634-4ddf-bf6f-f72d11716ef6)
+
+
+Response code sent by server, page requested by client (index.html) -> display in client
+![picture10](https://github.com/KooSuYeon/computer_network/assets/124496650/e2937da7-3b56-424e-8755-452cb46ea646)
+
+
+Response code : 404
+Page 404 GET Request
+![middle1](https://github.com/KooSuYeon/computer_network/assets/124496650/218319b3-056c-410c-9436-d1a0723148e5)
 
 
 
+Server Terminal
+<img width="452" alt="picture11" src="https://github.com/KooSuYeon/computer_network/assets/124496650/f712efa7-6588-4628-aed0-0e88421becfa">
 
 
-### 1. GET Success 200
-<img width="955" alt="index" src="https://github.com/KooSuYeon/computer_network/assets/124496650/62c3118c-be5a-41f0-a29d-9314facd84b0">
+
+Header information requested by Client, display in IP address -> server
+
+Client Terminal
+![picture12](https://github.com/KooSuYeon/computer_network/assets/124496650/55f6bd07-82b4-45d3-b8a8-92ff935e3316)
 
 
+Show in response code -> client sent by server
+![picture13](https://github.com/KooSuYeon/computer_network/assets/124496650/bf9ea1aa-7abb-449c-9060-cceb7e5b021f)
 
 
 - - - 
-
 ## >>>> POST 요청
 
-
 #### >>> client
-##### 4-1. send_http_post_request (server로 보낼 request 구성)
-1. client에게 이름과 나이의 입력을 받음. (spacebar 구분) 
-2. send_http_post_request(host, port, "/result", client_input)
-3. HTTP header 구성 : POST /result HTTP/1.1\r\nHOST: {host}\r\nContent-length: {content_length}\r\n\r\n{data}
-4. server와 연결할 Socket 생성 후 Socket으로 만든 header client에게 전송
+##### 4-1. send_http_post_request (compose request to send to server)
 
+![picture14](https://github.com/KooSuYeon/computer_network/assets/124496650/13a7ab29-9cf6-4b32-ae35-92334f138d12)
+![picture15](https://github.com/KooSuYeon/computer_network/assets/124496650/c980d806-6478-4853-a427-a7da64e64d7c)
+
+1. send_http_post_request(host, port, "/index.html")
+2. HTTP header : POST /index.html HTTP/1.1\r\nHOST: {host}\r\n\r\n
+3. Create a socket to connect to the server and send it to the header client made of the socket
 
 #### >>> server
-##### 4-1. post_handler (client로부터 온 HTTP header POST /result HTTP/1.1 처리)
-- client에게 입력받음 -> POST 요청
-1. client에게 입력받은 name, age 분리 및 /result에 보여질 html 구성
-2. 올바른 version인지 확인 (HTTP/1.0 or HTTP/1.1)
-3. 입력받은 name, age를 file 에 작성
-4. client에게 받아온 정보로 구성된 /result의 html 내용을 읽어온 후 client에게 전송
+##### 4-1. post_handler (handle HTTP header POST /index.html HTTP/1.1 from client)
+![picture16](https://github.com/KooSuYeon/computer_network/assets/124496650/a97f3234-b8f7-4191-984b-0b6bdd77a7f3)
 
+- Received from client -> POST Request
+1. Configuring html to be seen in name, age isolation, and /result received from client
+2. Verify correct version (HTTP/1.0 or HTTP/1.1)
+3. Create input name, age in file
+4. Read the html contents of the /result consisting of the information received from the client and send it to the client
+
+Response code : 200
+Server Terminal
+
+![picture17](https://github.com/KooSuYeon/computer_network/assets/124496650/85ffd31c-069d-4d8f-b65b-9f3e8f153706)
+
+Header information requested by Client, IP address, content-length entered, content -> server displayed
+
+Client Terminal
+![picture18](https://github.com/KooSuYeon/computer_network/assets/124496650/c20081da-9e94-46ea-8c8c-adad61724c6d)
+
+Response code sent by server, post request result -> display in client
+
+(After calling the page where you can enter information - GET method, enter information - POST method)
+Request POST by entering the name and age to write to the user
+The value received is written in result.txt.
+
+![picture19](https://github.com/KooSuYeon/computer_network/assets/124496650/b1649a0a-b200-4a83-b109-1d49fad3b458)
+
+Result.txt
+![picture20](https://github.com/KooSuYeon/computer_network/assets/124496650/6fe0dc55-39e5-425f-8a8e-13a3df7e54e6)
 
 
 - - - 
@@ -122,18 +211,48 @@ server.py , client.py 분리하여 작성
 
 
 #### >>> client
-##### 4-1. send_http_head_request (server로 보낼 request 구성)
+##### 4-1. send_http_head_request (compose request to send to server)
+![picture21](https://github.com/KooSuYeon/computer_network/assets/124496650/dedc78c8-8eba-4f2e-87c8-ddb97cb75dc7)
+![picture22](https://github.com/KooSuYeon/computer_network/assets/124496650/4fc6a592-f176-482e-9dcb-45bfc38a5411)
+
+
 1. send_http_head_request(host, port, "/style.css")
-2. HTTP header 구성 : HEAD /style.css HTTP/1.1\r\nHOST: {host}\r\n\r\n
-3. server와 연결할 Socket 생성 후 Socket으로 만든 header client에게 전송
+2. HTTP header : HEAD /style.css HTTP/1.1\r\nHOST: {host}\r\n\r\n
+3. Create a socket to connect to the server and send it to the header client made of the socket
 
 
 #### >>> server
-##### 4-1. head_handler (client로부터 온 HTTP header HEAD /style.css HTTP/1.1 처리)
-- 172.30.1.56.9002/style.css 존재유무 확인 -> HEAD 요청
-1. 올바른 version인지 확인 (HTTP/1.0 or HTTP/1.1)
-2. 존재하는 css라면 해당 요청의 헤더 정보만을 읽어옴.</br>
-   존재하는 css라면 "HTTP/1.0 200 OK" -> client 에게 전송
+##### 4-1. head_handler (handle HTTP header HEAD /style.css HTTP/1.1 from client)
+![picture23](https://github.com/KooSuYeon/computer_network/assets/124496650/842dcbac-7ebb-4909-a39b-82ed90a02977)
+
+
+- 172.30.1.56.9002/style.css Presence Confirmation -> HEAD Request
+1. Verify correct version (HTTP/1.0 or HTTP/1.1)
+2. If there is a css, only the header information of the request is read.</br>
+   If css exists, send "HTTP/1.0 200 OK" -> to client
+
+Response code : 200
+Server Terminal
+![picture24](https://github.com/KooSuYeon/computer_network/assets/124496650/3b0d0f45-a051-4234-b9dc-9a74af36cfcd)
+
+Header information requested by Client, display in IP address -> server
+Client Terminal!
+![picure25](https://github.com/KooSuYeon/computer_network/assets/124496650/6dd80745-e784-47b2-882b-58ff86d3a7ba)
+
+Show in response code -> client sent by server
+![picture26](https://github.com/KooSuYeon/computer_network/assets/124496650/28d68442-75e1-454b-a0e7-5c9ec34a3bcb)
+
+
+Response code : 404
+404 css page request
+![picture27](https://github.com/KooSuYeon/computer_network/assets/124496650/201203be-bb16-4bb7-98e9-51aa021f4cce)
+
+Server Terminal
+![picture28](https://github.com/KooSuYeon/computer_network/assets/124496650/2281ad39-e290-45cf-a365-c2e0a6c7546e)
+
+Client Terminal
+![picture29](https://github.com/KooSuYeon/computer_network/assets/124496650/43a4e319-a7b1-4092-8da0-266872957f57)
+![picture30](https://github.com/KooSuYeon/computer_network/assets/124496650/db00dde5-8acd-4648-a6cf-2ae8ec81a4b1)
 
 
 
@@ -143,18 +262,50 @@ server.py , client.py 분리하여 작성
 
 
 #### >>> client
-##### 4-1. send_http_put_request (server로 보낼 request 구성)
+##### 4-1. send_http_put_request (compose request to send to server)
+![picture31](https://github.com/KooSuYeon/computer_network/assets/124496650/ffaaea88-bbb1-4b33-9b55-f643093fb7ca)
+![picture32](https://github.com/KooSuYeon/computer_network/assets/124496650/57eaf292-aaed-41c3-b291-0ec0c2bf019b)
+
+
+
 1. send_http_put_request(host, port, "/result.txt", "John 25")
-2. HTTP header 구성 : PUT /result.txt HTTP/1.1\r\nHost: {host}\r\nContent-Length: {content_length}\r\n\r\n{data}"
-3. server와 연결할 Socket 생성 후 Socket으로 만든 header client에게 전송
+2. HTTP header : PUT /result.txt HTTP/1.1\r\nHost: {host}\r\nContent-Length: {content_length}\r\n\r\n{data}"
+3. Create a socket to connect to the server and send it to the header client made of the socket
 
 
 #### >>> server
-##### 4-1. put_handler (client로부터 온 HTTP header PUT /style.css HTTP/1.1 처리)
-- client에게 result.txt 수정 요청 -> PUT 요청
-1. client에게 수정하고 싶은 이름과 나이의 입력을 받음.
-2. send_http_put_request(host, port, "result.txt", data)
-3. 올바른 version인지 확인 (HTTP/1.0 or HTTP/1.1)
-4. 입력받은 name, age를 file 에 반영
-5. client에게 받아온 Update된 정보 -> client에게 전송
+##### 4-1. put_handler (handle HTTP header PUT /style.css HTTP/1.1 from client)
+![picture33](https://github.com/KooSuYeon/computer_network/assets/124496650/1f45b009-2e43-4de0-b3d4-d2a24493eddf)
+
+
+- Request result.txt modification to client -> Request PUT
+1. Receive input from client of the name and age you want to modify.
+2. 2. send_http_put_request(host, port, "result.txt", data)
+3. Verify correct version (HTTP/1.0 or HTTP/1.1)
+4. Reflect the input name, age in the file
+5. Updated information received from client -> Send to client
+
+Response code : 200
+Server Terminal
+
+![picture34](https://github.com/KooSuYeon/computer_network/assets/124496650/cd3a4e54-cdab-4cec-9f42-b3727a739993)
+
+
+Header information requested by Client, IP address, content-length entered, content -> server displayed
+
+Client Terminal
+Request a PUT by entering the name and age to change to the user
+
+Read the changed result.txt content when the PUT request was successful.
+![picture35](https://github.com/KooSuYeon/computer_network/assets/124496650/11415942-998c-4670-8559-49b13a6a0480)
+
+
+response code sent by server, updated information -> display in client
+
+Result.txt
+
+
+![picture36](https://github.com/KooSuYeon/computer_network/assets/124496650/b1e58e3d-69c8-46d1-8bc0-a471333fd665)
+
+![picture37](https://github.com/KooSuYeon/computer_network/assets/124496650/cce791dd-3654-4cd5-a8a8-c133f3aa3883)
 
