@@ -72,6 +72,7 @@ Run client code on PC to run as the client</br>
 
 2. client connection (use accept() function in the socket)
 ![picture2](https://github.com/KooSuYeon/IBookLeague/assets/124496650/a87b1026-9805-4b90-aa11-24179825e44b)
+</br>
 -Socket to communicate with the client, get the client's address (IP, PORT) (until it is connected to the client)
 
 
