@@ -244,7 +244,7 @@ Client Terminal</br>
 
 ## >>>> POST Request
 
->>> client
+#### >>> client
 ##### 4-1. send_http_put_request (compose request to send to the server)
 
 ![put1](https://github.com/KooSuYeon/computer_network/assets/124496650/268b839f-58f8-4366-b3dc-8207179f88fe)
@@ -256,7 +256,7 @@ Client Terminal</br>
 2. HTTP header: PUT /result.txt HTTP/1.1\r\nHOST: {host}\r\nContent-length: {content_length}\r\n\r\n{open}\”name\”: {name} ,\n\”age\”: {age} {close}”
 3. Create a socket to connect to the server and send it to the header client made of the socket
 
->>> server
+#### >>> server
 ##### 4-1. put_handler (handle HTTP header HEAD /style.css HTTP/1.1 from the client)
 - Request result.txt modification to client -> Request PUT
 
