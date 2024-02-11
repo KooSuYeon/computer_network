@@ -64,7 +64,6 @@ Run client code on PC to run as the client</br>
 #### << server.py >>
 1. Create TCP Socket and wait for connection (using Python's socket module)
 ![picture1](https://github.com/KooSuYeon/IBookLeague/assets/124496650/78430b98-318f-4a08-8aee-61421e2cb79a)
-</br>
 - socket (AF_INET, SOCK_STREAM) because it is a TCP method
 - Bind my PC's IP, PORT to be specified to Socket
 (Allows Socket to accept incoming connections while waiting at IP, PORT)
@@ -123,24 +122,31 @@ Server Terminal</br>
 
 Header information requested by the client, displayed in IP address -> server</br>
 Client Terminal
-![picture9](https://github.com/KooSuYeon/IBookLeague/assets/124496650/7d3cb263-a634-4ddf-bf6f-f72d11716ef6)
+![picture9](https://github.com/KooSuYeon/computer_network/assets/124496650/626c6cf8-51c3-4ee5-a288-ca5128b9203b)
+
 
 Response code sent by the server, page requested by the client (index.html) -> displayed in the client
-![picture10](https://github.com/KooSuYeon/IBookLeague/assets/124496650/e2937da7-3b56-424e-8755-452cb46ea646)
+
+![picture10](https://github.com/KooSuYeon/computer_network/assets/124496650/8f5587f8-cfb3-49a4-adb1-58d8cb424319)
+
 
 Response code: 404</br>
 Page 404 GET Request
-![middle1](https://github.com/KooSuYeon/IBookLeague/assets/124496650/218319b3-056c-410c-9436-d1a0723148e5)
+![picture11](https://github.com/KooSuYeon/computer_network/assets/124496650/b071ef05-8657-459a-aa50-054e8a2336aa)
+
 
 Server Terminal
-![picture11](https://github.com/KooSuYeon/IBookLeague/assets/124496650/f712efa7-6588-4628-aed0-0e88421becfa)
+![picture12](https://github.com/KooSuYeon/computer_network/assets/124496650/6d3be34a-f778-43b6-a071-943fe5c8aa00)
+
 
 Header information requested by the client, displayed in IP address -> server</br>
 Client Terminal
-![picture12](https://github.com/KooSuYeon/IBookLeague/assets/124496650/55f6bd07-82b4-45d3-b8a8-92ff935e3316)
+![picture13](https://github.com/KooSuYeon/computer_network/assets/124496650/c01db021-16a6-44ad-9711-20d7294b6ac8)
+
 
 Response code sent by the server, displayed in the client
-![picture13](https://github.com/KooSuYeon/IBookLeague/assets/124496650/bf9ea1aa-7abb-449c-9060-cceb7e5b021f)
+![picture14](https://github.com/KooSuYeon/computer_network/assets/124496650/c13eccca-6631-4f67-a502-5df6c7247d99)
+
 
 - - - 
 
