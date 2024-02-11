@@ -242,7 +242,7 @@ Client Terminal</br>
 
 - - - 
 
-## >>>> POST Request
+## >>>> PUT Request
 
 #### >>> client
 ##### 4-1. send_http_put_request (compose request to send to the server)
