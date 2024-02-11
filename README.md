@@ -64,7 +64,7 @@ Run client code on PC to run as the client</br>
 #### << server.py >>
 1. Create TCP Socket and wait for connection (using Python's socket module)
 ![picture1](https://github.com/KooSuYeon/IBookLeague/assets/124496650/78430b98-318f-4a08-8aee-61421e2cb79a)
-
+</br>
 - socket (AF_INET, SOCK_STREAM) because it is a TCP method
 - Bind my PC's IP, PORT to be specified to Socket
 (Allows Socket to accept incoming connections while waiting at IP, PORT)
