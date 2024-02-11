@@ -240,3 +240,49 @@ Client Terminal</br>
 ![picture30](https://github.com/KooSuYeon/computer_network/assets/124496650/db00dde5-8acd-4648-a6cf-2ae8ec81a4b1)
 </br>
 
+- - - 
+
+## >>>> POST Request
+
+>>> client
+4-1. send_http_put_request (compose request to send to the server)
+
+![put1](https://github.com/KooSuYeon/computer_network/assets/124496650/268b839f-58f8-4366-b3dc-8207179f88fe)
+![put2](https://github.com/KooSuYeon/computer_network/assets/124496650/56e4b1a1-f376-4e21-9fe2-efbc64c7ee7c)
+
+
+- Receive name and age to modify result.txt from client
+1. send_http_put_request(host, port, "/result.txt", data)
+2. HTTP header: PUT /result.txt HTTP/1.1\r\nHOST: {host}\r\nContent-length: {content_length}\r\n\r\n{open}\”name\”: {name} ,\n\”age\”: {age} {close}”
+3. Create a socket to connect to the server and send it to the header client made of the socket
+
+>>> server
+##### 4-1. put_handler (handle HTTP header HEAD /style.css HTTP/1.1 from the client)
+- Request result.txt modification to client -> Request PUT
+
+
+![put3](https://github.com/KooSuYeon/computer_network/assets/124496650/de52ab96-5dd3-4273-95b2-3b9e3a115b04)
+
+1. Receive input from client of the name and age you want to modify.
+2. send_http_put_request(host, port, "result.txt", data)
+3. Verify correct version (HTTP/1.0 or HTTP/1.1)
+4. Reflect the input name, age in the file
+5. Updated information received from client -> Send to client
+
+Response code : 200</br>
+Server Terminal</br>
+![put4](https://github.com/KooSuYeon/computer_network/assets/124496650/5139f48d-4b42-4438-9614-127b9725e606)
+</br>
+
+Header information requested by the client, IP address, content-length entered, content -> server displayed</br>
+
+Read the changed result.txt content when the PUT request was successful.</br>
+response code sent by server, updated information -> display in client</br>
+![put5](https://github.com/KooSuYeon/computer_network/assets/124496650/cf1a5187-9cff-4082-a73a-399aa0e4ab4b)
+
+
+Result.txt</br>
+![put6](https://github.com/KooSuYeon/computer_network/assets/124496650/8f759c60-747c-495c-b176-e0c7b4c6ec49)
+</br>
+
+![put7](https://github.com/KooSuYeon/computer_network/assets/124496650/fe5743ff-ed0c-4b09-ac3e-217ddb984324)
