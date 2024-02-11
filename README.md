@@ -191,7 +191,7 @@ The value received is written in result.txt.</br>
 
 ![picture19](https://github.com/KooSuYeon/computer_network/assets/124496650/b1649a0a-b200-4a83-b109-1d49fad3b458)
 </br>
-Result.txt
+Result.txt</br>
 ![picture20](https://github.com/KooSuYeon/computer_network/assets/124496650/6fe0dc55-39e5-425f-8a8e-13a3df7e54e6)
 </br>
 ## >>>> HEAD Request
