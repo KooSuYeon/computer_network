@@ -24,7 +24,9 @@ If more than two environments are not available, you can also proceed to localho
 How to create a new socket for each request, communication between the client and the server</br>
 It is done using multiple sockets.</br>
 
+</div>
 
+<div align="center">
 ### Socket
 </br>
 ##### Protocol
