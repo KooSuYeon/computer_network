@@ -27,17 +27,16 @@ If more than two environments are not available, you can also proceed to localho
 ### Socket
 ##### Protocol
 - Tells you which protocol to use as an argument for the Socket() function,
-- Assign socket (AF_INET, SOCK_STREAM) because it is a TCP method
-</br>
-##### Source's Address and Port Number
+- Assign socket (AF_INET, SOCK_STREAM) because it is a TCP method</br>
+
+#### Source's Address and Port Number
 - Address and port number of the destination
-- Associate address with port number as a bind() function
-</br>
-##### Destination's Address and Port Number
+- Associate address with port number as a bind() function</br>
+
+#### Destination's Address and Port Number
 - Address and port number of the destination
 - In TCP, the address and port number of the destination are bundled with the connect() function.
-- UDP sends only the address and port number of the destination as an argument for the sendto() function.
-</br>
+- UDP sends only the address and port number of the destination as an argument for the sendto() function.</br>
   
 ---
 
@@ -122,24 +121,24 @@ Server Terminal</br>
 ![picture8](https://github.com/KooSuYeon/IBookLeague/assets/124496650/bc475046-b28f-4a3f-a23f-6c178494c53c)
 
 Header information requested by the client, displayed in IP address -> server</br>
-Client Terminal</br>
+Client Terminal
 ![picture9](https://github.com/KooSuYeon/IBookLeague/assets/124496650/7d3cb263-a634-4ddf-bf6f-f72d11716ef6)
 
-Response code sent by the server, page requested by the client (index.html) -> displayed in the client</br>
+Response code sent by the server, page requested by the client (index.html) -> displayed in the client
 ![picture10](https://github.com/KooSuYeon/IBookLeague/assets/124496650/e2937da7-3b56-424e-8755-452cb46ea646)
 
 Response code: 404</br>
-Page 404 GET Request</br>
+Page 404 GET Request
 ![middle1](https://github.com/KooSuYeon/IBookLeague/assets/124496650/218319b3-056c-410c-9436-d1a0723148e5)
 
 Server Terminal
 ![picture11](https://github.com/KooSuYeon/IBookLeague/assets/124496650/f712efa7-6588-4628-aed0-0e88421becfa)
 
 Header information requested by the client, displayed in IP address -> server</br>
-Client Terminal</br>
+Client Terminal
 ![picture12](https://github.com/KooSuYeon/IBookLeague/assets/124496650/55f6bd07-82b4-45d3-b8a8-92ff935e3316)
 
-Response code sent by the server, displayed in the client</br>
+Response code sent by the server, displayed in the client
 ![picture13](https://github.com/KooSuYeon/IBookLeague/assets/124496650/bf9ea1aa-7abb-449c-9060-cceb7e5b021f)
 
 - - - 
