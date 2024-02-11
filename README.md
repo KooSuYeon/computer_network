@@ -4,7 +4,8 @@
 
 <div align="center">
   
-Server, Client programming using socket communication (programming languages are implemented in C, Java, Python)</br>
+Server, Client programming using socket communication</br>
+(programming languages are implemented in C, Java, Python)</br>
 After creating TCP-based socket programming, the Client requests an HTTP protocol GET/HEAD/POST/PUT Request</br>
 Server configures response messages according to Client's Request and implements them to respond (TCP-based Client submits program files implemented by Server)</br>
 Ex) 
